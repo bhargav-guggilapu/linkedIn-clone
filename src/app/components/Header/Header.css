@@ -41,11 +41,13 @@
   background: none;
   margin-left: 3px;
   width: 250px;
-  transition: width 0.3s;
+  transition: all 0.3s;
 }
 
 .search input:focus {
   width: 350px;
+  padding-left: 15px;
+  font-size: 18px;
 }
 
 .right {

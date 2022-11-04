@@ -1,0 +1,45 @@
+.sidebarRight {
+  flex: 0.2;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+  padding-bottom: 10px;
+  height: fit-content;
+}
+
+.sidebarRight_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.sidebarRight_header > h2 {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.sidebarRight_article {
+  display: flex;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.sidebarRight_article:hover {
+  background-color: whitesmoke;
+}
+
+.article_left {
+  color: gray;
+  margin-right: 10px;
+}
+
+.article_right {
+  margin-top: 2px;
+  flex: 1;
+}
+
+.article_right > p {
+  font-size: 12px;
+  color: gray;
+}

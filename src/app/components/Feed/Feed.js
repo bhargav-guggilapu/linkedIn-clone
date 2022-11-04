@@ -5,7 +5,6 @@ import ImageIcon from "@material-ui/icons/Image";
 import SubscriptionsIcon from "@material-ui/icons/Subscriptions";
 import EventNoteIcon from "@material-ui/icons/EventNote";
 import CalendarViewDayIcon from "@material-ui/icons/CalendarViewDay";
-import { db, collection, getDocs, addDoc } from "../../../firebase";
 
 function Feed() {
   const inputOptions = [
@@ -34,25 +33,43 @@ function Feed() {
   const [posts, setPosts] = useState([]);
   const [message, setMessage] = useState("");
 
+  const getData = async () => {
+    const response = await fetch(
+      "https://linkin-46671-default-rtdb.firebaseio.com/posts.json"
+    );
+    const data = await response.json();
+    const posts = [];
+    for (const key in data) {
+      posts.push({
+        id: key,
+        name: data[key].name,
+        description: data[key].description,
+        message: data[key].message,
+        photoUrl: data[key].photoUrl,
+      });
+    }
+    setPosts(posts.reverse());
+  };
+
   useEffect(() => {
-    (async () => {
-      const postsCol = collection(db, "posts");
-      const snapshot = await getDocs(postsCol);
-      const posts = snapshot.docs.map((doc) => doc.data());
-      setPosts(posts.sort((b, a) => a.id - b.id));
-    })();
+    getData();
   });
 
   const onSendPost = async (e) => {
     e.preventDefault();
 
-    await addDoc(collection(db, "posts"), {
-      name: "Test",
-      description: "testing data ...",
-      message: message,
-      photoUrl:
-        "https://media-exp1.licdn.com/dms/image/C4E03AQFMg0DvFRzJgw/profile-displayphoto-shrink_100_100/0/1662190747126?e=1672876800&v=beta&t=apITnbfFrdKLR7HQTZWKRmwfzgHAPSXivfreULlEXOg",
-      id: Date.now(),
+    await fetch("https://linkin-46671-default-rtdb.firebaseio.com/posts.json", {
+      method: "POST",
+      body: JSON.stringify({
+        name: "Bhargav Guggilapu",
+        description: "software developer",
+        message: message,
+        photoUrl:
+          "https://media-exp1.licdn.com/dms/image/C4E03AQFMg0DvFRzJgw/profile-displayphoto-shrink_100_100/0/1662190747126?e=1672876800&v=beta&t=apITnbfFrdKLR7HQTZWKRmwfzgHAPSXivfreULlEXOg",
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
 
     setMessage("");

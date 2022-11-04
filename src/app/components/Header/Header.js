@@ -1,6 +1,6 @@
 import React from "react";
 import "./Header.css";
-import HeaderOption from "../HeaderOption/HeaderOption";
+import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import SearchIcon from "@material-ui/icons/Search";
 import HomeIcon from "@material-ui/icons/Home";
 import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
@@ -13,32 +13,32 @@ function Header() {
   const navItems = [
     {
       name: "Home",
-      icon: HomeIcon,
+      Icon: HomeIcon,
     },
     {
       name: "My Network",
-      icon: SupervisorAccountIcon,
+      Icon: SupervisorAccountIcon,
     },
     {
       name: "Jobs",
-      icon: BusinessCenterIcon,
+      Icon: BusinessCenterIcon,
     },
     {
       name: "Messaging",
-      icon: ChatIcon,
+      Icon: ChatIcon,
     },
     {
       name: "Notifications",
-      icon: NotificationsIcon,
+      Icon: NotificationsIcon,
     },
     {
       name: "Me",
-      icon: null,
+      Icon: null,
     },
     {},
     {
       name: "Work",
-      icon: AppsIcon,
+      Icon: AppsIcon,
     },
   ];
   return (
@@ -66,7 +66,20 @@ function Header() {
                   }}
                 />
               ) : (
-                <HeaderOption title={item.name} Icon={item.icon} />
+                <div className="header_options">
+                  {item.Icon ? (
+                    <item.Icon style={{ fontSize: "30px" }} />
+                  ) : (
+                    <img
+                      src="https://media-exp1.licdn.com/dms/image/C4E03AQFMg0DvFRzJgw/profile-displayphoto-shrink_100_100/0/1662190747126?e=1672876800&v=beta&t=apITnbfFrdKLR7HQTZWKRmwfzgHAPSXivfreULlEXOg"
+                      alt="my_img"
+                    />
+                  )}
+                  <h3>
+                    {item.name}
+                    {!item.Icon && <ArrowDropDownIcon />}
+                  </h3>
+                </div>
               )}
             </div>
           );

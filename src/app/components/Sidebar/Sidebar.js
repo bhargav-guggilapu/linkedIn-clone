@@ -20,7 +20,7 @@ function Sidebar() {
         <h2>User Name</h2>
         <h4>bhargavguggilapu@gmail.com</h4>
       </div>
-      <div className="container">
+      <div className="sidebar_container">
         <div className="bg-color" style={{ width: "100%", textAlign: "left" }}>
           <div className="connections">
             <p>Connections</p>

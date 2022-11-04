@@ -5,14 +5,17 @@
 
 .input_container {
   background-color: white;
-  padding: 10px 10px 20px 10px;
+  padding: 10px 10px 5px 10px;
   border-radius: 10px;
   margin-bottom: 20px;
+}
+
+.input_content {
   display: flex;
   justify-content: space-between;
 }
 
-.input_container > img {
+.input_content > img {
   object-fit: contain;
   height: 50px;
   border-radius: 50%;
@@ -47,4 +50,24 @@
 
 .input > form > button {
   display: none;
+}
+
+.feed_options {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input_option {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+  color: gray;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.input_option:hover {
+  background-color: whitesmoke;
+  border-radius: 10px;
 }

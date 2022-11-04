@@ -3,9 +3,10 @@
   justify-content: center;
   background-color: #f3f2ef;
   width: 100%;
+  padding-top: 25px;
 }
 
-.container {
+.app {
   display: flex;
   justify-content: center;
   align-items: center;

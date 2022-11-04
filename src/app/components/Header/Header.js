@@ -56,7 +56,7 @@ function Header() {
       <div className="right">
         {navItems.map((item, i) => {
           return (
-            <div>
+            <div key={i}>
               {i === 6 ? (
                 <div
                   style={{

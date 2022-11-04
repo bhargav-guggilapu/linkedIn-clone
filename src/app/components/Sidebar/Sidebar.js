@@ -17,7 +17,7 @@ function Sidebar() {
           alt="my_img"
           className="user_img"
         />
-        <h2>User Name</h2>
+        <h2>Bhargav Guggilapu</h2>
         <h4>bhargavguggilapu@gmail.com</h4>
       </div>
       <div className="sidebar_container">
@@ -49,9 +49,9 @@ function Sidebar() {
       </div>
       <div className="bottom">
         <p>Recent</p>
-        {recentItems.map((item) => {
+        {recentItems.map((item, i) => {
           return (
-            <div className="item">
+            <div className="item" key={i}>
               <span className="hash">#</span>
               <p>{item}</p>
             </div>

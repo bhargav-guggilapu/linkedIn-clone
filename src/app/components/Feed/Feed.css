@@ -1,0 +1,50 @@
+.feed {
+  flex: 0.6;
+  margin: 0 20px;
+}
+
+.input_container {
+  background-color: white;
+  padding: 10px 10px 20px 10px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.input_container > img {
+  object-fit: contain;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.input {
+  border: 1px solid lightgray;
+  border-radius: 30px;
+  display: flex;
+  padding: 15px;
+  color: gray;
+  flex: 0.98;
+  transition: background-color 0.3s;
+}
+
+.input:hover {
+  background-color: whitesmoke;
+}
+
+.input > form {
+  display: flex;
+  width: 100%;
+}
+
+.input > form > input {
+  border: none;
+  flex: 1;
+  outline-width: 0;
+  font-weight: 600;
+  background-color: transparent;
+}
+
+.input > form > button {
+  display: none;
+}

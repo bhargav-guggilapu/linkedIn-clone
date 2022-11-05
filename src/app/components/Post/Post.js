@@ -1,11 +1,11 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import "./Post.css";
 import ThumbUpAltOutlinedIcon from "@material-ui/icons/ThumbUpAltOutlined";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import CachedOutlinedIcon from "@material-ui/icons/CachedOutlined";
 import SendOutlinedIcon from "@material-ui/icons/SendOutlined";
 
-function Post({ name, description, message, photoUrl, timeStamp }) {
+const Post = forwardRef(({ name, description, message, photoUrl, timeStamp }, ref) => {
   const buttons = [
     {
       Icon: ThumbUpAltOutlinedIcon,
@@ -25,7 +25,7 @@ function Post({ name, description, message, photoUrl, timeStamp }) {
     },
   ];
   return (
-    <div className="post">
+    <div ref={ref} className="post">
       <div className="post_header">
         <img src={photoUrl} alt="my_img" />
         <div className="post_info">
@@ -56,6 +56,6 @@ function Post({ name, description, message, photoUrl, timeStamp }) {
       </div>
     </div>
   );
-}
+})
 
 export default Post;

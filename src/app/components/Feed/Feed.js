@@ -5,6 +5,7 @@ import ImageIcon from "@material-ui/icons/Image";
 import SubscriptionsIcon from "@material-ui/icons/Subscriptions";
 import EventNoteIcon from "@material-ui/icons/EventNote";
 import CalendarViewDayIcon from "@material-ui/icons/CalendarViewDay";
+import FlipMove from 'react-flip-move';
 
 function Feed() {
   const inputOptions = [
@@ -109,6 +110,7 @@ function Feed() {
         </div>
       </div>
       <div>
+        <FlipMove>
         {posts.map((post) => (
           <Post
             key={post.id}
@@ -119,6 +121,7 @@ function Feed() {
             timeStamp={post.timeStamp}
           />
         ))}
+        </FlipMove>
       </div>
     </div>
   );

@@ -1,0 +1,9 @@
+.login_container {
+  height: 100%;
+  background-color: white;
+}
+
+.login_content > img {
+  object-fit: contain;
+  height: 70px;
+}

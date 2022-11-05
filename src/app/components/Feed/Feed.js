@@ -46,6 +46,7 @@ function Feed() {
         description: data[key].description,
         message: data[key].message,
         photoUrl: data[key].photoUrl,
+        timeStamp: data[key].timeStamp,
       });
     }
     setPosts(posts.reverse());
@@ -64,6 +65,7 @@ function Feed() {
         name: "Bhargav Guggilapu",
         description: "software developer",
         message: message,
+        timeStamp: Date.now(),
         photoUrl:
           "https://media-exp1.licdn.com/dms/image/C4E03AQFMg0DvFRzJgw/profile-displayphoto-shrink_100_100/0/1662190747126?e=1672876800&v=beta&t=apITnbfFrdKLR7HQTZWKRmwfzgHAPSXivfreULlEXOg",
       }),
@@ -114,6 +116,7 @@ function Feed() {
             description={post.description}
             message={post.message}
             photoUrl={post.photoUrl}
+            timeStamp={post.timeStamp}
           />
         ))}
       </div>

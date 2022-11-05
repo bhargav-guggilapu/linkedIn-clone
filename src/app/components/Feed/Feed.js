@@ -5,7 +5,7 @@ import ImageIcon from "@material-ui/icons/Image";
 import SubscriptionsIcon from "@material-ui/icons/Subscriptions";
 import EventNoteIcon from "@material-ui/icons/EventNote";
 import CalendarViewDayIcon from "@material-ui/icons/CalendarViewDay";
-import FlipMove from 'react-flip-move';
+import FlipMove from "react-flip-move";
 
 function Feed() {
   const inputOptions = [
@@ -55,7 +55,7 @@ function Feed() {
 
   useEffect(() => {
     getData();
-  });
+  }, []);
 
   const onSendPost = async (e) => {
     e.preventDefault();
@@ -74,7 +74,7 @@ function Feed() {
         "Content-Type": "application/json",
       },
     });
-
+    getData();
     setMessage("");
   };
 
@@ -111,16 +111,16 @@ function Feed() {
       </div>
       <div>
         <FlipMove>
-        {posts.map((post) => (
-          <Post
-            key={post.id}
-            name={post.name}
-            description={post.description}
-            message={post.message}
-            photoUrl={post.photoUrl}
-            timeStamp={post.timeStamp}
-          />
-        ))}
+          {posts.map((post) => (
+            <Post
+              key={post.id}
+              name={post.name}
+              description={post.description}
+              message={post.message}
+              photoUrl={post.photoUrl}
+              timeStamp={post.timeStamp}
+            />
+          ))}
         </FlipMove>
       </div>
     </div>

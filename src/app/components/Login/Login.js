@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import "./Login.css";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
+import { useHistory } from "react-router-dom";
 
 function Login() {
+  const history = useHistory();
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const nameRef = useRef();
+  const photoUrlRef = useRef();
+  const [isLoading, setIsLoading] = useState(false);
+  const [login, setLogin] = useState(true);
+
   const footerOptions = [
     {
       path: "https://www.linkedin.com/legal/user-agreement?trk=d_checkpoint_lg_consumerLogin_ft_user_agreement",
@@ -33,6 +42,45 @@ function Login() {
       label: "Language",
     },
   ];
+
+  const onLogin = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    let url;
+    if (login) {
+      url =
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDmuCstK64hHyTx4QfMhIRnydsj1VCgX5U";
+    } else {
+      if (!nameRef.current.value) {
+        alert("Please Enter Your Name.");
+        setIsLoading(false);
+        return;
+      }
+      url =
+        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDmuCstK64hHyTx4QfMhIRnydsj1VCgX5U";
+    }
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: emailRef.current.value,
+        password: passwordRef.current.value,
+        returnSecureToken: true,
+      }),
+    }).then((res) => {
+      setIsLoading(false);
+      if (res.ok) {
+        history.push("/feed");
+      } else {
+        res.json().then((data) => {
+          alert(data.error.message);
+        });
+      }
+    });
+  };
+
   return (
     <div className="login_container">
       <div>
@@ -44,24 +92,40 @@ function Login() {
       </div>
       <div className="login_form_container">
         <div className="login_form">
-          <h2 style={{ fontSize: "32px", paddingBottom: "5px" }}>Sign in</h2>
+          <h2 style={{ fontSize: "32px", paddingBottom: "5px" }}>
+            Sign {login ? "in" : "up"}
+          </h2>
           <p style={{ fontSize: "14px", marginBottom: "30px" }}>
             Stay updated on your professional world
           </p>
           <form>
-            <input
-              type="text"
-              placeholder="Full Name (required if registering)"
-            />
-            <input type="text" placeholder="Profile Pic URL (optional)" />
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
-            <button>Sign In</button>
+            {!login && (
+              <input type="text" placeholder="Full Name" ref={nameRef} />
+            )}
+            {!login && (
+              <input
+                type="text"
+                placeholder="Profile Pic URL (optional)"
+                ref={photoUrlRef}
+              />
+            )}
+            <input type="email" placeholder="Email" ref={emailRef} />
+            <input type="password" placeholder="Password" ref={passwordRef} />
+            <button type="submit" onClick={onLogin} disabled={isLoading}>
+              {isLoading
+                ? "Contacting To Server"
+                : login
+                ? "Sign In"
+                : "Sign Up"}
+            </button>
           </form>
           <p style={{ textAlign: "center" }}>
-            Not a member?{" "}
-            <span style={{ cursor: "pointer", color: "#0177b7" }}>
-              Register Now!
+            {(!login ? "Existing" : "Not a") + " member? "}
+            <span
+              style={{ cursor: "pointer", color: "#0177b7" }}
+              onClick={() => setLogin((state) => (state = !state))}
+            >
+              {!login ? "Sign In" : "Register Now!"}
             </span>
           </p>
         </div>

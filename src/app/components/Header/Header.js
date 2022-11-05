@@ -8,8 +8,11 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import BusinessCenterIcon from "@material-ui/icons/BusinessCenter";
 import ChatIcon from "@material-ui/icons/Chat";
 import AppsIcon from "@material-ui/icons/Apps";
+import { useHistory } from "react-router-dom";
 
 function Header() {
+  const history = useHistory();
+
   const navItems = [
     {
       name: "Home",
@@ -41,6 +44,11 @@ function Header() {
       Icon: AppsIcon,
     },
   ];
+
+  const onLogout = () => {
+    history.push("/login");
+  };
+
   return (
     <div className="header">
       <div className="left">
@@ -66,7 +74,12 @@ function Header() {
                   }}
                 />
               ) : (
-                <div className="header_options">
+                <div
+                  className="header_options"
+                  onClick={() => {
+                    if (!item.Icon) onLogout();
+                  }}
+                >
                   {item.Icon ? (
                     <item.Icon style={{ fontSize: "30px" }} />
                   ) : (

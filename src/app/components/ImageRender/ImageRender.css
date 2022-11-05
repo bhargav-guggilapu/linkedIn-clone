@@ -1,0 +1,13 @@
+.user_img {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.no-img {
+  background: gray;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bolder;
+}

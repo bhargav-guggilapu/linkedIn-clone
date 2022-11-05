@@ -1,7 +1,12 @@
 import React from "react";
 import "./Sidebar.css";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../Store/userSlice";
+import ImageRender from "../ImageRender/ImageRender";
 
 function Sidebar() {
+  const user = useSelector(selectUser);
+
   const recentItems = ["react-js", "programmer", "frontend", "dev"];
 
   return (
@@ -12,19 +17,15 @@ function Sidebar() {
           alt="bg"
           className="bg_img"
         />
-        <img
-          src="https://media-exp1.licdn.com/dms/image/C4E03AQFMg0DvFRzJgw/profile-displayphoto-shrink_100_100/0/1662190747126?e=1672876800&v=beta&t=apITnbfFrdKLR7HQTZWKRmwfzgHAPSXivfreULlEXOg"
-          alt="my_img"
-          className="user_img"
-        />
-        <h2>Bhargav Guggilapu</h2>
-        <h4>bhargavguggilapu@gmail.com</h4>
+        <ImageRender user={user} height="70px" fontSize="30px" />
+        <h2>{user.name}</h2>
+        <h4>{user.email}</h4>
       </div>
       <div className="sidebar_container">
         <div className="bg-color" style={{ width: "100%", textAlign: "left" }}>
           <div className="connections">
             <p>Connections</p>
-            <p className="count">9</p>
+            <p className="count">{user.connections}</p>
           </div>
           <p
             style={{
@@ -40,11 +41,11 @@ function Sidebar() {
       <div className="status">
         <div className="sta">
           <p>Who viewed you</p>
-          <p className="count">2,000</p>
+          <p className="count">{user.profileView}</p>
         </div>
         <div className="sta">
-          <p>Who viewed you</p>
-          <p className="count">2,000</p>
+          <p>Views on post</p>
+          <p className="count">{user.postView}</p>
         </div>
       </div>
       <div className="bottom">

@@ -6,8 +6,13 @@ import SubscriptionsIcon from "@material-ui/icons/Subscriptions";
 import EventNoteIcon from "@material-ui/icons/EventNote";
 import CalendarViewDayIcon from "@material-ui/icons/CalendarViewDay";
 import FlipMove from "react-flip-move";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../Store/userSlice";
+import ImageRender from "../ImageRender/ImageRender";
 
 function Feed() {
+  const user = useSelector(selectUser);
+
   const inputOptions = [
     {
       Icon: ImageIcon,
@@ -55,7 +60,7 @@ function Feed() {
 
   useEffect(() => {
     getData();
-  }, []);
+  });
 
   const onSendPost = async (e) => {
     e.preventDefault();
@@ -63,18 +68,16 @@ function Feed() {
     await fetch("https://linkin-46671-default-rtdb.firebaseio.com/posts.json", {
       method: "POST",
       body: JSON.stringify({
-        name: "Bhargav Guggilapu",
-        description: "software developer",
+        name: user.name,
+        description: user.email,
         message: message,
         timeStamp: Date.now(),
-        photoUrl:
-          "https://media-exp1.licdn.com/dms/image/C4E03AQFMg0DvFRzJgw/profile-displayphoto-shrink_100_100/0/1662190747126?e=1672876800&v=beta&t=apITnbfFrdKLR7HQTZWKRmwfzgHAPSXivfreULlEXOg",
+        photoUrl: user.photoUrl,
       }),
       headers: {
         "Content-Type": "application/json",
       },
     });
-    getData();
     setMessage("");
   };
 
@@ -82,10 +85,7 @@ function Feed() {
     <div className="feed">
       <div className="input_container">
         <div className="input_content">
-          <img
-            src="https://media-exp1.licdn.com/dms/image/C4E03AQFMg0DvFRzJgw/profile-displayphoto-shrink_100_100/0/1662190747126?e=1672876800&v=beta&t=apITnbfFrdKLR7HQTZWKRmwfzgHAPSXivfreULlEXOg"
-            alt="my_img"
-          />
+          <ImageRender user={user} height="50px" fontSize="20px" />
           <div className="input">
             <form>
               <input
@@ -94,9 +94,7 @@ function Feed() {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
               />
-              <button onClick={onSendPost} type="submit">
-                Send
-              </button>
+              <button onClick={onSendPost} type="submit" />
             </form>
           </div>
         </div>

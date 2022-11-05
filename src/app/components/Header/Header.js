@@ -1,6 +1,7 @@
 import React from "react";
 import "./Header.css";
-import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../Store/userSlice";
 import SearchIcon from "@material-ui/icons/Search";
 import HomeIcon from "@material-ui/icons/Home";
 import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
@@ -9,10 +10,11 @@ import BusinessCenterIcon from "@material-ui/icons/BusinessCenter";
 import ChatIcon from "@material-ui/icons/Chat";
 import AppsIcon from "@material-ui/icons/Apps";
 import { useHistory } from "react-router-dom";
+import ImageRender from "../ImageRender/ImageRender";
 
 function Header() {
   const history = useHistory();
-
+  const user = useSelector(selectUser);
   const navItems = [
     {
       name: "Home",
@@ -83,15 +85,9 @@ function Header() {
                   {item.Icon ? (
                     <item.Icon style={{ fontSize: "30px" }} />
                   ) : (
-                    <img
-                      src="https://media-exp1.licdn.com/dms/image/C4E03AQFMg0DvFRzJgw/profile-displayphoto-shrink_100_100/0/1662190747126?e=1672876800&v=beta&t=apITnbfFrdKLR7HQTZWKRmwfzgHAPSXivfreULlEXOg"
-                      alt="my_img"
-                    />
+                    <ImageRender user={user} height="30px" fontSize="15px" />
                   )}
-                  <h3>
-                    {item.name}
-                    {!item.Icon && <ArrowDropDownIcon />}
-                  </h3>
+                  {item.Icon && <h3>{item.name}</h3>}
                 </div>
               )}
             </div>

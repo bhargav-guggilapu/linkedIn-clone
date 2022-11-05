@@ -2,6 +2,8 @@ import React, { useRef, useState } from "react";
 import "./Login.css";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../Store/userSlice";
 
 function Login() {
   const history = useHistory();
@@ -9,6 +11,8 @@ function Login() {
   const passwordRef = useRef();
   const nameRef = useRef();
   const photoUrlRef = useRef();
+  const dispatch = useDispatch();
+
   const [isLoading, setIsLoading] = useState(false);
   const [login, setLogin] = useState(true);
 
@@ -70,12 +74,57 @@ function Login() {
         returnSecureToken: true,
       }),
     }).then((res) => {
-      setIsLoading(false);
       if (res.ok) {
-        history.push("/linkin/feed");
+        res.json().then(async (data) => {
+          const url =
+            "https://linkin-46671-default-rtdb.firebaseio.com/users.json";
+          if (login) {
+            const response = await fetch(url);
+            const userData = await response.json();
+            for (const key in userData) {
+              if (data.localId === userData[key].localId) {
+                dispatch(
+                  loginUser({
+                    name: userData[key].name,
+                    photoUrl: userData[key].photoUrl,
+                    email: userData[key].email,
+                    profileView: userData[key].profileView,
+                    postView: userData[key].postView,
+                    connections: userData[key].connections,
+                  })
+                );
+              }
+            }
+          } else {
+            const obj = {
+              email: data.email,
+              name: nameRef.current.value,
+              photoUrl: photoUrlRef.current.value
+                ? photoUrlRef.current.value
+                : "",
+              profileView: Math.floor(Math.random() * 100 + 1),
+              postView: Math.floor(Math.random() * 100 + 1),
+              connections: Math.floor(Math.random() * 1000 + 1),
+            };
+            await fetch(url, {
+              method: "POST",
+              body: JSON.stringify({
+                localId: data.localId,
+                ...obj,
+              }),
+              headers: {
+                "Content-Type": "application/json",
+              },
+            });
+            dispatch(loginUser(obj));
+          }
+          setIsLoading(false);
+          history.push("/linkin/feed");
+        });
       } else {
         res.json().then((data) => {
           alert(data.error.message);
+          setIsLoading(false);
         });
       }
     });

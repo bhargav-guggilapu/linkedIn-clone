@@ -1,9 +1,97 @@
 .login_container {
-  height: 100%;
+  padding: 15px 45px;
   background-color: white;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
-.login_content > img {
-  object-fit: contain;
-  height: 70px;
+.login_form_container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login_form {
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
+  padding: 20px;
+}
+
+.login_form > form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+
+.login_form > form > input {
+  width: 350px;
+  height: 50px;
+  font-size: 20px;
+  padding-left: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+
+.login_form > form > button {
+  width: 365px;
+  height: 50px;
+  font-size: large;
+  color: white;
+  background-color: #0074b1;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+.login_footer {
+  display: flex;
+  justify-content: center;
+}
+
+.login_footer > ul {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  list-style: none;
+  font-size: 13px;
+  color: gray;
+  flex-wrap: wrap;
+}
+
+.login_footer > ul > li {
+  text-decoration: none;
+  margin: 10px;
+  font-weight: 500;
+  color: black;
+  display: flex;
+  align-items: center;
+}
+
+.login_footer > ul > li > a {
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.login_footer > ul > li > button {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  border: 0;
+  background: transparent;
+}
+.login_footer > ul > li > button:hover {
+  color: #0074b1;
+}
+
+.login_footer > ul > li > a:hover {
+  color: rgba(0, 0, 0, 0.8);
+  text-decoration: underline rgba(0, 0, 0, 0.8);
 }

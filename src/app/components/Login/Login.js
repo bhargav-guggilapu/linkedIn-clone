@@ -72,7 +72,7 @@ function Login() {
     }).then((res) => {
       setIsLoading(false);
       if (res.ok) {
-        history.push("/feed");
+        history.push("/linkin/feed");
       } else {
         res.json().then((data) => {
           alert(data.error.message);

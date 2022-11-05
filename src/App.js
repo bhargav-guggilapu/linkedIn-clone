@@ -14,10 +14,10 @@ function App() {
   return (
     <div>
       <Switch>
-        <Route path="/login" exact>
+        <Route path="/linkin/login" exact>
           <Login />
         </Route>
-        <Route path="/feed" exact>
+        <Route path="/linkin/feed" exact>
           <div className="app">
             <Header />
             <div className="body">
@@ -28,7 +28,7 @@ function App() {
           </div>
         </Route>
         <Route path="*">
-          <Redirect to="/login" />
+          <Redirect to="/linkin/login" />
         </Route>
       </Switch>
     </div>

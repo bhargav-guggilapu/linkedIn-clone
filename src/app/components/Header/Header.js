@@ -46,7 +46,7 @@ function Header() {
   ];
 
   const onLogout = () => {
-    history.push("/login");
+    history.push("/linkin/login");
   };
 
   return (

@@ -93,3 +93,19 @@
   height: 24px;
   border-radius: 50%;
 }
+
+.img_effect {
+  transition: transform 0.3s;
+}
+
+.img_effect:hover {
+  transform: scale(1.3);
+}
+
+@media only screen and (max-width: 1000px) {
+  .header_options > h3,
+  .left,
+  .right > a {
+    display: none;
+  }
+}

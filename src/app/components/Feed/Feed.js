@@ -6,6 +6,7 @@ import SubscriptionsIcon from "@material-ui/icons/Subscriptions";
 import EventNoteIcon from "@material-ui/icons/EventNote";
 import CalendarViewDayIcon from "@material-ui/icons/CalendarViewDay";
 import FlipMove from "react-flip-move";
+import AddBoxIcon from "@material-ui/icons/AddBox";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../Store/userSlice";
 import ImageRender from "../ImageRender/ImageRender";
@@ -94,7 +95,9 @@ function Feed() {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
               />
-              <button onClick={onSendPost} type="submit" />
+              <button onClick={onSendPost} type="submit">
+                <AddBoxIcon />
+              </button>
             </form>
           </div>
         </div>

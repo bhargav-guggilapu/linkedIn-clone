@@ -85,7 +85,9 @@ function Header() {
                   {item.Icon ? (
                     <item.Icon style={{ fontSize: "30px" }} />
                   ) : (
-                    <ImageRender user={user} height="30px" fontSize="15px" />
+                    <div className="img_effect">
+                      <ImageRender user={user} height="30px" fontSize="15px" />
+                    </div>
                   )}
                   {item.Icon && <h3>{item.name}</h3>}
                 </div>

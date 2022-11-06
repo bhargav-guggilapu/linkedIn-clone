@@ -119,3 +119,14 @@
 .hash {
   margin: 0 10px 0 5px;
 }
+
+@media only screen and (max-width: 850px) {
+  .sidebar {
+    width: 93%;
+    margin-bottom: 30px;
+  }
+
+  .bottom {
+    display: none;
+  }
+}

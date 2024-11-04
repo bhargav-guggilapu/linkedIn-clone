@@ -1,6 +1,4 @@
-# linkin
-
-LinkedIn Clone
+# LinkedIn Clone
 
 Developed using REACT with REDUX
 
